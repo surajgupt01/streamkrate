@@ -53,7 +53,7 @@ app.get('/share' , requireAuth , (req,res)=>{
 })
 
 app.get('/LogIn' , (req,res)=>{
-    res.render('Login')
+    res.render('login')
     // res.send("he")
 })
 
