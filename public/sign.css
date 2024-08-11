@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1{
+    font-size: 40px;
+    margin-top: 30px;
+    margin-left: 6vw;
+    margin-right: 28vw;
+    color: rgb(106, 255, 0);
+    cursor: pointer;
+}
+
+
+h2{
+    margin-left: 47vw;
+    margin-top: 90px;
+}
+
+h3{
+    margin-top: 10px;
+    margin-left: 45vw;
+}
+
+#tag{
+    margin-left: 37%;
+    margin-top: 8px;
+    margin-top: 30px;
+}
+
+
+a{
+    text-decoration: none;
+
+    
+}
+
+
+a:hover{
+    color: #081021;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+
+    
+    
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    border-radius: 10px;
+    /* background-color: #c6c6c6; */
+    padding: 20px;
+    align-items: center;
+    padding: 10px;
+    height: 250px;
+}
+
+form input{
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid rgb(195, 193, 193);
+    height: 25px;
+    padding: 10px;
+    margin: 10px;
+    
+}
+
+#btn{
+    background: #0d63c5;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition:  0.2s ease-in-out;
+    border: none;
+    width: 30%;
+    margin-top: 8px;
+    width: 250px;
+    margin-left: 10px;
+    height: 40px;
+    font-size: 15px;
+
+}
+
+.log{
+ 
+    margin-left: 40%;
+    
+    display: flex;
+    cursor: pointer;
+    
+}
+@media screen and (max-width:500px) {
+
+    h2{
+        margin-left: 40%;
+    }
+    #tag{
+        margin-left: 5%;
+        text-align: center;
+        width: 88%;
+    }
+    h3{
+        margin-left: 35%;
+    }
+    .log{
+        margin-left: 30%;
+    }
+
+}
+.Error{
+    color: red;
+    margin: 7px;
+}
+.pError{
+    color: red;
+    margin: 7px;
+}

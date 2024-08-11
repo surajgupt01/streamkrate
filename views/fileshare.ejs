@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="fs.css" />
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="loader"></div>
+      <p class="load-text">Uploading.....</p>
+    <div class="nav">
+      <ul>
+        <li>
+          <a href="/"><h2 class="logo">StreamKrate</h2></a>
+        </li>
+       
+      </ul>
+    </div>
+
+    <div class="container">
+      <h2>Share and Secure Your Files, Effortlessly.</h2>
+      <br />
+      <br />
+      <h3>
+        Unleash the Power of Seamless File Sharing: Your Documents, Anytime,
+        Anywhere!
+      </h3>
+      
+      <div class="main">
+        <div class="SID"></div>
+        <div class="User"></div>
+        
+        <form id="uploadForm" method="" action="" enctype="multipart/form-data">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email id"
+            class="email"
+          />
+          <input type="file" name="UserFile" id="fileInput" />
+          <button type="submit" id="up">Upload</button>
+        </form>
+        <!-- <button type="" id="up" class="generate">generate</button> -->
+        
+        <input
+          type="text"
+          placeholder="Enter the receiver's email id"
+          type="email"
+          class="Remail"
+        />
+        <button id="share">share</button>
+        <br>
+        <!-- <div class="receiver-mssg"><a href="" id="Download"></a></div> -->
+         <a class="link" href=""></a>
+      </div>
+    </div>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js">
+
+
+
+  </script>
+</html>

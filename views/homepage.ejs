@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Download</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <input type="text" id="socket" name="socketid" placeholder="Enter socket ID">
+
+    <h2 id="User"></h2>
+
+    <!-- Form for uploading files -->
+    <form id="uploadForm"enctype="multipart/form-data">
+        <input type="email" name="email" placeholder="Enter your UserID" class="name" required>
+        <input type="file" name="file" id="fileInput" required>
+        <button type="submit" id="up">Uploads</button>
+    </form>
+
+    <!-- Form for downloading files -->
+    <form action="/download" method="get" enctype="multipart/form-data">
+        <input type="text" name="RName" placeholder="Enter recipient UserID" id="Receiver" required>
+        <button type="submit">Download</button>
+    </form>
+    
+    <textarea id="txt" cols="30" rows="10" placeholder="Messages will appear here"></textarea>
+
+    <input type="text" name="Mssg" id="Mssg" placeholder="Enter your message">
+
+    <button class="share">Share</button>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

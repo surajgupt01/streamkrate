@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="log.css">
+</head>
+<body>
+
+    <a href="/"><h1>StreamKrate</h1></a>
+
+    <h2>LogIn</h2>
+
+
+
+    <p id="tag">Welcome back! Log in and pick up where you left off</p>
+
+    <div class="container">
+        <form action="" method="">
+            <table>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td><input type="emailE"  placeholder="Enter your name" name="email" required>
+                    <br>
+                    <div class="Error" ></div></td>
+                </tr>
+                <!-- <tr>
+                    <td>User Id</td>
+                    <td><input type="text" placeholder="Choose a unique userid" name="userid"></td>
+                </tr> -->
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td><input name="password" type="password" placeholder="enter your password" required>
+                   <br>
+                    <div class="pError" ></div></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" id="btn">submit</button></td>
+                </tr>
+            </table>
+            
+            
+            
+            
+        </form>
+        
+    </div>
+    <div class="log">
+         <a href="/signIn">Back</a>
+
+    </div>
+    
+</body>
+<script>
+   let form =  document.querySelector('form')
+   let emailError = document.querySelector('.Error')
+   let passwordError = document.querySelector('.pError')
+
+   form.addEventListener('submit' , async(e)=>{
+     e.preventDefault()
+     console.log(form.email.value)
+     console.log(form.password.value)
+     let email = form.email.value
+     let password = form.password.value
+    
+     try{
+           const result = await fetch('/LogIn' , {
+            method : 'POST',
+            body : JSON.stringify({email : email , password : password}),
+            headers : {'Content-Type' : 'application/json'}
+
+           })
+           const data = await result.json();
+           console.log(data)
+           if(data.error){
+             emailError.innerText = data.error.email
+             passwordError.innerText = data.error.password
+           }
+           if(data.user){
+            location.assign('/share')
+           }
+  
+        }catch(err){
+
+            console.log(err)
+
+
+        }
+   })
+</script>
+</html>
