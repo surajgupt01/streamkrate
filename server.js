@@ -20,7 +20,7 @@ const AWS = require('aws-sdk');
 const crypto = require('crypto')
 const { S3Client, GetObjectCommand , PutObjectCommand } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
-
+require('dotenv').config()
 
 
 app.use(express.static(__dirname + '/public'))
@@ -33,7 +33,7 @@ app.use(express.json()); // This middleware parses JSON payloads
 
 connectDB()
 
-
+console.log(process.env.connect)
 
 const storage = multer.memoryStorage()
 
@@ -306,10 +306,10 @@ app.post('/LogIn' , async(req,res)=>{
 })
 
 AWS.config.update({
-  region: 'us-east-1',
+  region: process.env.region,
   credentials: {
-    accessKeyId: 'AKIA4NUM7JGVTEBNS443',
-    secretAccessKey: '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',
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
   },
 });
 
@@ -322,7 +322,7 @@ app.get('/generate', (req, res) => {
   const fileType = req.query.fileType;
   console.log(fileName , " " , fileType)
   const s3Params = {
-    Bucket: 'suraj-private',
+    Bucket: process.env.Bucket,
     Key: `${fileName}`, // Generate a unique file name
     Expires: 60 * 20, // URL expires in 5 minutes
     ContentType: fileType,
@@ -343,10 +343,10 @@ app.get('/generate', (req, res) => {
 
 
 const s3Client = new S3Client({
-  region: 'us-east-1',
+  region: process.env.region,
   credentials: {
-    accessKeyId: 'AKIA4NUM7JGVTEBNS443',
-    secretAccessKey: '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',
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
   },
 });
 

@@ -1,10 +1,11 @@
 const Mongoose = require('mongoose')
+require('dotenv').config()
 
 const connectDB = async()=>{
 
     try{
 
-        const con = await Mongoose.connect( "mongodb+srv://admin:admin123@cluster0.pqo2j38.mongodb.net/?retryWrites=true&w=majority"
+        const con = await Mongoose.connect(process.env.connect
         , {
 
             // useNewUrlParser : true,
