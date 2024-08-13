@@ -4,19 +4,12 @@ var socket = io()
 var email = document.querySelector('.email')
 var Remail = document.querySelector('.Remail')
 var share = document.querySelector('#share')
-// var receiverMssg = document.querySelector('.receiver-mssg')
-
-
-
 
 
 let heading = document.createElement('h1')
 let body = document.querySelector('body')
 
-// socket.on('socketid' , (sockets)=>{
-//     heading.innerText = sockets
-//     body.appendChild(heading)
-// })
+
 
 socket.on('name' , (name)=>{
     const user = document.querySelector('.User')
@@ -40,7 +33,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
         // Request a pre-signed URL from the server
         const response = await fetch(`/generate?fileName=${encodeURIComponent(file.name)}&fileType=${encodeURIComponent(file.type)}`);
         const { url } = await response.json();
-        console.log("url is : " , url)
+        
         // Upload the file directly to S3 using the pre-signed URL
         load.style.display = 'flex';
         loadText.style.display = 'block';
@@ -76,14 +69,6 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
    
   });
 
-  // let download = document.querySelector('.generate')
-
-  // download.addEventListener('click' , async(e)=>{
-   
-   
-   
-  // })
-
 
 
 share.addEventListener('click' , async(e)=>{
@@ -93,7 +78,7 @@ share.addEventListener('click' , async(e)=>{
       // Request a pre-signed URL from the server
       const response = await fetch(`/generate-download-url?fileName=${encodeURIComponent(fileName)}`);
       const { url } = await response.json();
-      console.log("d link : " , url)
+     
       if (url) {
         const downloadLink = document.createElement('a');
         downloadLink.href = url;
