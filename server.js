@@ -14,8 +14,6 @@ const jwt = require('jsonwebtoken')
 const {requireAuth} = require('./middleware/authMiddleware.js')
 const cookieParser = require('cookie-parser'); 
 const validator = require('validator')
-// const url = require('config')
-// const PutObject = require('./public/s3.js')
 const AWS = require('aws-sdk');
 const crypto = require('crypto')
 const { S3Client, GetObjectCommand , PutObjectCommand } = require('@aws-sdk/client-s3');
@@ -62,55 +60,8 @@ app.get('/signIn' , (req,res)=>{
 })
 
 
-// app.post('/Upload' , upload.single("UserFile") , (req, res)=>{
-
-//      console.log(req.body.Name)
-//      File.findOne({name:req.body.Name})
-//      .then(data=>{
-//       // console.log(data)
-//       if(data.name == req.body.Name)
-//       {
-//         data.filename = req.file.originalname,
-//         data.mimetype = req.file.mimetype,
-//         data.data = req.file.buffer
-
-//         data.save()
-
-        
-//         console.log("File changed successfully")
-
-//         // const downloadLink = `http://localhost:3000/download?Name=${req.body.Name}`;
-//         // console.log("Download Link:", downloadLink);
-   
-//         // io.on('connection' , (socket)=>{
-//         //  socket.emit('connect' , downloadLink)
-   
-//         // })
-
-//       }
-//       else if(!data)
-//       {
-//         const newFile = new File({
-//           filename: req.file.originalname,
-//           mimetype: req.file.mimetype,
-//           data: req.file.buffer,
-//           name: req.body.Name
-           
-//           });
-//           newFile
-//           .save()
-
-//           console.log("File uploaded successfully")
-
-//       }
-
-  
-    
-//      })
 
 
-    
-// })
 
 app.get('/download' , async(req, res)=>{
 
@@ -185,47 +136,6 @@ io.on('connection' , (socket)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-// io.on('connect', (socket) => {
-    
-  
-//   // Handle the event when a new user data is received from the client
-//   socket.on('newUserData', (data) => {
-
-//  File.findOne({name:data.name})
-// .then(user=>{
-//   if(!user) {
-//       const newUser = new File({
-//           name: data.name,
-//           id: data.id
-//         })
-    
-//         newUser
-//         .save(newUser) 
-//         console.log( newUser.name , socket.id);
-//   } 
-//   else if(user.name === data.name){ 
-//      user.id  = socket.id;
-//      user.save()
-//      console.log("changed data")
-//    return;
-
-
-//   }
-//   else{
-  
-  
-//   }
-// })})})
 
 const handleError =  (err) => {
 
@@ -357,40 +267,8 @@ app.get('/generate-download-url', async(req, res) => {
   fileName = fileName.replace(/^.*[\\/]/, ''); // Removes any local path
   console.log("file to be downloaded : ", fileName)
 
-  // if (!fileName) {
-  //   return res.status(400).json({ error: 'File name is required' });
-  // }
 
-  // const s3Params = {
-  //   Bucket: 'suraj-private',
-  //   Key: `${fileName}`, // Ensure this matches the path where your file is stored
-  //   Expires: 3000 * 5, // URL expires in 5 minutes
-  // };
 
-  // s3.getSignedUrl('getObject', s3Params, (err, url) => {
-  //   if (err) {
-  //     console.error('Error generating pre-signed URL:', err);
-  //     return res.status(500).json({ error: 'Failed to generate download URL' });
-  //   }
-
-  //   console.log("D : ",url)
-
-  //   res.status(200).json({ url });
-  // });
-  // try {
-  //   const command = new GetObjectCommand({
-  //     Bucket: 'suraj-private',
-  //     Key: fileName, // Ensure "Key" is capitalized
-  //   });
-
-  //   const url =  s3.getSignedUrl(s3Client, command, { expiresIn: 3600 }); // Optional expiration time
-  //      console.log("D : ",url)
-
-  //   res.status(200).json({ url });
-  // } catch (error) {
-  //   console.error('Error creating GetObjectCommand:', error);
-  //   throw error;
-  // }
   const s3Params = {
     Bucket: 'suraj-private',
     Key: `${fileName}`, // Generate a unique file name
