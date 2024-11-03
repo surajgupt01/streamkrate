@@ -273,6 +273,7 @@ app.get('/generate-download-url', async(req, res) => {
     Bucket: 'suraj-private',
     Key: `${fileName}`, // Generate a unique file name
     Expires: 60 * 5, // URL expires in 5 minutes
+    useAccelerateEndpoint: true,
     // ContentType: fileType,
      ResponseContentDisposition: `attachment; filename="${fileName}"`,
     // ACL: 'public-read', // Optional: Set the ACL permissions
