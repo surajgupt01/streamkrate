@@ -1,0 +1,86 @@
+pipeline {
+    agent any
+
+    environment {
+        NODE_ENV = 'production'
+        AWS_ACCESS_KEY_ID = credentials('AKIA4NUM7JGVTEBNS443') // Add in Jenkins credentials
+        AWS_SECRET_ACCESS_KEY = credentials('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')
+        MONGO_URI = credentials('mongodb+srv://admin:admin123@cluster0.pqo2j38.mongodb.net/?retryWrites=true&w=majority') // MongoDB connection string
+        S3_BUCKET = 'suraj-private'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // Clone the repository
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Use Node.js to install dependencies
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run your test suite
+                sh 'npm test'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                // Build Docker image for the application
+                sh 'docker build -t fileshare:v1 .'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                // Tag and push the Docker image to a Docker registry
+                sh '''
+                docker tag fileshare:v1 gsuraj/fileshare:v1
+                docker login -u gsuraj -p Ny-5Xqf!$u96s-G
+                docker push gsuraj/fileshare:v1
+                '''
+            }
+        }
+
+        stage('Deploy to Server') {
+            steps {
+                // Deploy the Docker container on the server
+                sshagent(['your-server-ssh-key']) {
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no user@your-server-address << EOF
+                    docker pull your-dockerhub-username/fileshare:v1
+                    docker stop fileshare || true
+                    docker rm fileshare || true
+                    docker run -d --name fileshare -p 3000:3000 \
+                        -e NODE_ENV=production \
+                        -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+                        -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
+                        -e MONGO_URI=${MONGO_URI} \
+                        -e S3_BUCKET=${S3_BUCKET} \
+                        your-dockerhub-username/fileshare:v1
+                    EOF
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline execution completed.'
+        }
+        success {
+            echo 'Deployment was successful!'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
