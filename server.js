@@ -91,7 +91,7 @@ app.get('/download' , async(req, res)=>{
 
 
 
-server.listen(port , ()=>{
+server.listen(port,'0.0.0.0' , ()=>{
     console.log("server started at port:"+port)
 })
 
@@ -274,7 +274,7 @@ app.get('/generate-download-url', async(req, res) => {
     Bucket: process.env.Bucket,
     Key: `${fileName}`, // Generate a unique file name
     Expires: 60 * 5, // URL expires in 5 minutes
-    // useAccelerateEndpoint: true,
+
     // ContentType: fileType,
      ResponseContentDisposition: `attachment; filename="${fileName}"`,
     // ACL: 'public-read', // Optional: Set the ACL permissions
