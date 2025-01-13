@@ -275,7 +275,7 @@ app.get('/generate-download-url', async(req, res) => {
     Key: `${fileName}`, // Generate a unique file name
     Expires: 60 * 5, // URL expires in 5 minutes
 
-    // ContentType: fileType,
+    ContentType: fileType,
      ResponseContentDisposition: `attachment; filename="${fileName}"`,
     // ACL: 'public-read', // Optional: Set the ACL permissions
   };
