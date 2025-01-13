@@ -239,6 +239,7 @@ app.get('/generate', (req, res) => {
     // ACL: 'public-read', // Optional: Set the ACL permissions
   };
 
+
   s3.getSignedUrl('putObject', s3Params, (err, url) => {
     if (err) {
       console.error('Error generating pre-signed URL:', err);
@@ -270,9 +271,10 @@ app.get('/generate-download-url', async(req, res) => {
 
 
   const s3Params = {
-    Bucket: 'suraj-private',
+    Bucket: process.env.Bucket,
     Key: `${fileName}`, // Generate a unique file name
     Expires: 60 * 5, // URL expires in 5 minutes
+    // useAccelerateEndpoint: true,
     // ContentType: fileType,
      ResponseContentDisposition: `attachment; filename="${fileName}"`,
     // ACL: 'public-read', // Optional: Set the ACL permissions

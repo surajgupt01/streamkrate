@@ -4,12 +4,19 @@ var socket = io()
 var email = document.querySelector('.email')
 var Remail = document.querySelector('.Remail')
 var share = document.querySelector('#share')
+// var receiverMssg = document.querySelector('.receiver-mssg')
+
+
+
 
 
 let heading = document.createElement('h1')
 let body = document.querySelector('body')
 
-
+// socket.on('socketid' , (sockets)=>{
+//     heading.innerText = sockets
+//     body.appendChild(heading)
+// })
 
 socket.on('name' , (name)=>{
     const user = document.querySelector('.User')
@@ -71,6 +78,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
 
 
 
+
 share.addEventListener('click' , async(e)=>{
   const fileName = document.getElementById('fileInput').value;
   if (fileName) {
@@ -107,9 +115,7 @@ share.addEventListener('click' , async(e)=>{
 
 socket.on('shareFile' , ({Sender,download})=>{
   let downloads =  document.querySelector('.link')
-  // let button = document.querySelector('.Download')
-  // button.style.display = 'flex'
-  // button.style.backgroundColor  = "green"
+
   let box = document.createElement('div')
   box.className = 'receiver-mssg'
   // box.appendChild(downloads)
@@ -117,10 +123,7 @@ socket.on('shareFile' , ({Sender,download})=>{
    downloads.href = download
    downloads.click()
     
-    
-    // downloads.innerText =' Download File'
-    // body.appendChild(downloads)
-    
+
    
 
 })
