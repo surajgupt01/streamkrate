@@ -269,13 +269,12 @@ app.get('/generate-download-url', async(req, res) => {
   console.log("file to be downloaded : ", fileName)
 
 
-
   const s3Params = {
     Bucket: process.env.Bucket,
     Key: `${fileName}`, // Generate a unique file name
     Expires: 60 * 5, // URL expires in 5 minutes
 
-    // ContentType: fileType,
+     ContentType: req.body.fileType,
      ResponseContentDisposition: `attachment; filename="${fileName}"`,
     // ACL: 'public-read', // Optional: Set the ACL permissions
   };
@@ -290,6 +289,7 @@ app.get('/generate-download-url', async(req, res) => {
     console.log(url)
   });
 });
+
 
 
 
