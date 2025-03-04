@@ -45,7 +45,6 @@ form{
 ul{
 
     list-style: none;
-    padding: 0;
     margin-top: 20px;
     width: 100%;
 }
@@ -122,6 +121,20 @@ input[type=file]::file-selector-button {
 
   }
 
+  #up:hover{
+
+    background: #0e68b2;
+
+
+  }
+
+  #up:active{
+
+    background: #0e68b2;
+
+
+  }
+
   #share {
     background: rgb(137, 204, 89);
     padding: 10px 20px;
@@ -130,6 +143,13 @@ input[type=file]::file-selector-button {
     cursor: pointer;
     transition:  0.2s ease-in-out;
     border: none;
+  }
+
+  #share:hover{
+
+    background: rgb(107, 164, 66);
+
+
   }
 
   .receiver-mssg{
