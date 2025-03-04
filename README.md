@@ -10,7 +10,7 @@
   - Deployed : Render.
   - Cloud Storage : Aws S3 for file uploads and storage.
 
-# Project setup :
+## Project setup (Installation) :
 - fork and clone the project using - git clone.
 - cd streamkrate
 - npm install
