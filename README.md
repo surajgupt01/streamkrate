@@ -15,6 +15,7 @@
 - cd streamkrate
 - npm install
 - Setup the mongodb connect url for database connection.
+- set the aws secrect key, access key and region of s3 bucket details
 
 ![image_alt](https://github.com/surajgupt01/streamkrate/blob/358c76a3c5421ff2ac0b31673d5d20f49483c05c/Screenshot%202025-03-04%20214005.png)
 
